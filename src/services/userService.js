@@ -15,9 +15,8 @@ class UserServices {
     console.log('auth_data -----------------:', auth_data);
     return axios({
       method: 'post',
-      url: `https://jsonplaceholder.typicode.com/posts`,
+      url: `http://10.0.2.2:5000/api/v1/login`,
       data: auth_data,
-       headers: { authorization: `Basic ${auth_data}` },
     });
   };
 
@@ -27,7 +26,7 @@ class UserServices {
 
     return axios({
       method: 'post',
-      url: `https://jsonplaceholder.typicode.com/posts`,
+      url: `http://10.0.2.2:5000/api/v1/signup`,
       data: auth_register_data,
     });
 

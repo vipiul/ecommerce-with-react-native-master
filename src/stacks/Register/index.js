@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from 'axios';
 import {
   StyleSheet,
   Text,
@@ -31,41 +32,51 @@ import FlashMessage, { showMessage } from 'react-native-flash-message';
 const Register = ({ navigation }) => {
   const dispatch = useDispatch();
   const register = useSelector(state => state.register);
-  const [checked, setChecked] = React.useState("first");
-  const [one, setone] = React.useState("first");
+  const [c_password, setC_password] = useState('')
 
   const [form, setForm] = useForm({
-    name: '',
+    fullName: '',
     email: '',
     password: '',
-    c_password: '',
-    gender: '',
-    role: '',
+    gender: 'male',
+    role: '2',
   });
   const [data, setData] = useState();
 
   const onSubmit = () => {
-    setData({
-      name: form.name,
-      email: form.email,
-      password: form.password,
-      gender: checked,
-      role: one
-    });
-    console.log("form-----------" , data);
-    if (
-      form.name.length != 0 &&
-      form.password.length != 0 &&
-      form.email.length != 0
-    ) {
-       dispatch(authRegisterAction(data, navigation));
-    } else {
-      return showMessage({
-        message: '⚠️',
-        description: "Form can't be empty",
-        style: { backgroundColor: 'orange' },
-      });
-    }
+    // setData({
+    //   fullName: form.name,
+    //   email: form.email,
+    //   gender: form.gender,
+    //   password: form.password,
+    //   role: form.role
+    // });
+    console.log("form-----------" , form);
+    axios({
+      method: 'post',
+      url: `http://10.0.2.2:5000/api/v1/signup`,
+       data: JSON.stringify(form),
+    //   data:{
+    //     "fullName":"Ajay jangid",
+    //     "email":"vio9299@gmail.com",
+    //     "gender":"male",
+    //     "password":"Ajay@123",
+    //     "role":4
+    // }
+    }).then((res)=> console.log("res--------",res.data)).catch((e)=> console.log('eee-----',e));
+    // if (
+    //   form.name.length != 0 &&
+    //   form.password.length != 0 &&
+    //   form.email.length != 0
+    // ) {
+    //    dispatch(authRegisterAction(data, navigation));
+    // } else {
+    //   return showMessage({
+    //     message: '⚠️',
+    //     description: "Form can't be empty",
+    //     style: { backgroundColor: 'orange' },
+    //   });
+    // }
 
     //debug
     console.log('FORM_REGISTER:', form);
@@ -107,8 +118,8 @@ const Register = ({ navigation }) => {
             <TextInput
               label="Name"
               placeholder="name"
-              value={form.name}
-              onChangeText={e => setForm('name', e)}
+              value={form.fullName}
+              onChangeText={e => setForm('fullName', e)}
             />
             <Space height={20} />
             
@@ -132,25 +143,25 @@ const Register = ({ navigation }) => {
           >
             <Text>Gender</Text>
             <RadioButton
-              value="first"
-              status={checked === "first" ? "checked" : "unchecked"}
-              onPress={() => setChecked("first")}
+              value="male"
+              status={form.gender === "male" ? "checked" : "unchecked"}
+              onPress={() => setForm('gender', "male")}
               color="#0ea5e9"
             />
             <Text style={{color:"grey"}}>Male</Text>
 
             <RadioButton
-              value="second"
-              status={checked === "second" ? "checked" : "unchecked"}
-              onPress={() => setChecked("second")}
+              value="female"
+              status={form.gender === "female" ? "checked" : "unchecked"}
+              onPress={() => setForm('gender', "female")}
               color="#0ea5e9"
             />
             <Text style={{color:"grey"}}>Female</Text>
 
             <RadioButton
-              value="third"
-              status={checked === "third" ? "checked" : "unchecked"}
-              onPress={() => setChecked("third")}
+              value="other"
+              status={form.gender === "other" ? "checked" : "unchecked"}
+              onPress={() => setForm('gender', "other")}
               color="#0ea5e9"
             />
             <Text style={{color:"grey"}}>Others</Text>
@@ -168,8 +179,8 @@ const Register = ({ navigation }) => {
             <TextInput
               label="Confirm Password"
               placeholder="********"
-              value={form.password}
-              onChangeText={e => setForm('c_password', e)}
+              value={c_password}
+              onChangeText={e => setC_password(e)}
               secureTextEntry
             />
             <Space height={20} />
@@ -189,25 +200,25 @@ const Register = ({ navigation }) => {
           >
             <Text>Role</Text>
             <RadioButton
-              value="first"
-              status={one === "first" ? "checked" : "unchecked"}
-              onPress={() => setone("first")}
+              value= "2"
+              status={form.role === "2" ? "checked" : "unchecked"}
+              onPress={() => setForm('role', "2")}
               color="#0ea5e9"
             />
             <Text style={{color:"grey"}}>Customer</Text>
 
             <RadioButton
-              value="second"
-              status={one === "second" ? "checked" : "unchecked"}
-              onPress={() => setone("second")}
+              value="3"
+              status={form.role === "3" ? "checked" : "unchecked"}
+              onPress={() => setForm('role', "3")}
               color="#0ea5e9"
             />
             <Text style={{color:"grey"}}>Provider</Text>
 
             <RadioButton
-              value="third"
-              status={one === "third" ? "checked" : "unchecked"}
-              onPress={() => setone("third")}
+              value="4"
+              status={form.role === "4" ? "checked" : "unchecked"}
+              onPress={() => setForm('role', "4")}
               color="#0ea5e9"
             />
             <Text style={{color:"grey"}}>Both</Text>

@@ -45,8 +45,15 @@ const LogIn = ({ navigation, route }) => {
 
   const onSubmit = () => {
     console.log("a", form);
-    // axios.get("https://jsonplaceholder.typicode.com/users")
-    // .then((res)=> console.log("rrr----:", res.data)).catch((e)=>console.log("eeee-------------:",e));
+
+  //  axios({
+  //   method: 'post',
+  //    url: `http://10.0.2.2:5000/api/v1/login`,
+  //   data: {
+  //     "email":"vipulanand686@gmail.com",
+  //     "password":"Vip@123"
+  //   }
+  // }).then((res)=> console.log("lllrrr----:", res.data)).catch((e)=>console.log("lllleeee-------------:",e));
    
     if (form.email.length != 0 && form.password.length != 0) {
       console.log("a");

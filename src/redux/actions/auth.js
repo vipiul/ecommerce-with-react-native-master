@@ -15,12 +15,12 @@ export const authRegisterAction =
       .then(res => {
         //
         //debug
-        console.log('\n', 'AUTH_REGISTER_RESPONDATA', res.status, '\n');
+        console.log('\n', 'AUTH_REGISTER_RESPONDATA--------------', res.status, '\n');
 
         storeData('user', res.data);
 
         const user_id = res.data.id;
-        const token = res.data.registrationToken;
+        // const token = res.data.registrationToken;
 
         // UserServices.getUserProfile(user_id, token)
         //   .then(res_profile => {

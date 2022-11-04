@@ -90,6 +90,11 @@ const Router = () => {
         options={{ headerShown: false, gestureEnabled: false }}
       />
       <Stack.Screen
+        name="Forget Password"
+        component={SuccessLogin}
+        options={{ headerShown: false, gestureEnabled: false }}
+      />
+      <Stack.Screen
         name="Success Register"
         component={SuccessRegister}
         options={{ headerShown: false, gestureEnabled: false }}
