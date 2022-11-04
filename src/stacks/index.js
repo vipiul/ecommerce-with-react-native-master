@@ -26,6 +26,7 @@ import StartScreen from './StartScreen';
 import MessageDetail from './MessageDetail';
 import NotificationDetail from './NotificationDetail';
 import SplashScreen from './SplashScreen';
+import ForgetPassword from './ForgetPassword';
 
 export {
   LogIn,
@@ -56,4 +57,5 @@ export {
   MessageDetail,
   NotificationDetail,
   SplashScreen,
+  ForgetPassword
 };

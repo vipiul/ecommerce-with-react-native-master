@@ -1,6 +1,7 @@
 // import api from './httpService';
 // import envConfig from '../../env-config';
 import axios from 'axios';
+import { ForgetPassword } from '../stacks';
 import { apiURL, envConfig, user } from './hostnameServerApi';
 // const api = new axios();
 
@@ -36,6 +37,14 @@ class UserServices {
     //   data: auth_register_data,
     // });
   }; 
+  forgetPassword = ForgetPassword_Email => {
+    console.log('ForgetPassword_Email', ForgetPassword_Email);
+    return axios({
+      method: 'post',
+      url: `http://10.0.2.2:5000/api/v1/signup`,
+      data: auth_register_data,
+    });
+  }
 
   getUserProfile = (user_id, token) => {
     //debug

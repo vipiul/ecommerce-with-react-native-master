@@ -80,6 +80,7 @@ const LogIn = ({ navigation, route }) => {
       description: 'Feature coming soon',
       style: { backgroundColor: '#000' },
     });
+    navigation.navigate('Forget Password');
   };
 
   const space = Dimensions.get('screen').height / 28;

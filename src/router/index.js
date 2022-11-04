@@ -31,6 +31,7 @@ import {
   MessageDetail,
   NotificationDetail,
   SplashScreen,
+  ForgetPassword,
 } from '../stacks';
 import { BottomNav } from '../components';
 import { Platform, StatusBar } from 'react-native';
@@ -91,7 +92,7 @@ const Router = () => {
       />
       <Stack.Screen
         name="Forget Password"
-        component={SuccessLogin}
+        component={ForgetPassword}
         options={{ headerShown: false, gestureEnabled: false }}
       />
       <Stack.Screen

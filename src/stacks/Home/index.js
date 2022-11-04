@@ -11,6 +11,10 @@ import {
   StatusBar,
   Platform,
 } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import jwtDecode from 'jwt-decode';
+
+
 import TouchableScale from 'react-native-touchable-scale';
 import { useNavigation, useScrollToTop } from '@react-navigation/native';
 
@@ -411,6 +415,20 @@ const Home = ({ navigation, route }) => {
       dispatch(getUserProfileActionSuccess(user));
       dispatch(getCategoriesAction(user.tokenString));
     });
+    (async () => {
+      try { 
+        const token = await AsyncStorage.getItem('user');
+        const decoded = await jwtDecode(token);
+        console.log("de:::::::::::::::::::::::::::::",decoded);
+        if (token !== null) {
+          console.log("token=-=-==-=-=----------=============--------------=", token);
+          
+          alert('You are already registered')
+        }
+      } catch (e) { 
+        console.log("error---------------------:", e); 
+      }
+    })();  
     // dispatch(getUserProfileAction(user_id, token));
   }, []);
 

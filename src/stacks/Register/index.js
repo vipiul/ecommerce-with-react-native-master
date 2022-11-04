@@ -52,18 +52,22 @@ const Register = ({ navigation }) => {
     //   role: form.role
     // });
     console.log("form-----------" , form);
+    if (form.fullName && form.email && form.password) {
+      
+    } else {
+      
+    }
     axios({
       method: 'post',
       url: `http://10.0.2.2:5000/api/v1/signup`,
-       data: JSON.stringify(form),
-    //   data:{
-    //     "fullName":"Ajay jangid",
-    //     "email":"vio9299@gmail.com",
-    //     "gender":"male",
-    //     "password":"Ajay@123",
-    //     "role":4
-    // }
-    }).then((res)=> console.log("res--------",res.data)).catch((e)=> console.log('eee-----',e));
+       data: form,
+     }).then((res)=>{
+      alert('Sign up done')
+      console.log("res--------",res.data)
+     }).catch((e)=> {
+      alert('User Signuped')
+      console.log('eee-----',e)
+     });
     // if (
     //   form.name.length != 0 &&
     //   form.password.length != 0 &&
@@ -77,6 +81,8 @@ const Register = ({ navigation }) => {
     //     style: { backgroundColor: 'orange' },
     //   });
     // }
+
+    navigation.navigate('Log In')
 
     //debug
     console.log('FORM_REGISTER:', form);
